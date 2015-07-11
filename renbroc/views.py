@@ -38,6 +38,12 @@ def logout():
 
     return render_template('logout.html')
 
+@app.route("/user_page")
+#@login_required
+def user_page():
+
+    return render_template('user_page.html')
+
 
 
 @app.route('/', methods=['GET', 'POST'])

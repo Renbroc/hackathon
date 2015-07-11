@@ -1,3 +1,35 @@
 #nav, #body-container{
     padding: 5px;
 }
+#nav a{
+    margin: 0 10px;
+}
+.radar-chart .area {
+    fill-opacity: 0.7;
+}
+.radar-chart.focus .area {
+    fill-opacity: 0.3;
+}
+.radar-chart.focus .area.focused {
+    fill-opacity: 0.9;
+}
+.area.germany, .germany .circle {
+    fill: #FFD700;
+    stroke: none;
+}
+.area.argentina, .argentina .circle {
+    fill: #ADD8E6;
+    stroke: none;
+}
+.radar-chart .axis line {
+    stroke: grey;
+    stroke-width: 1;
+}
+.radar-chart .level {
+    stroke: grey;
+    stroke-width: 0.5;
+}
+text{
+    font-family: 'Helvetica Neue';
+    font-size: 11px;
+}
