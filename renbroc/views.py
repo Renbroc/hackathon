@@ -6,29 +6,28 @@ from renbroc import app
 
 import datetime
 
-#from renbroc.forms import *
+from renbroc.forms import LoginForm
 
 #from models import *
 
 from werkzeug import secure_filename
 
 
+# index view function suppressed for brevity
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+
+        return redirect('/index')
+    return render_template('login.html',
+                           title='Sign In',
+                           form=form)
+
 # Initialize toolbar
 #from flask_debugtoolbar import DebugToolbarExtension
 #toolbar = DebugToolbarExtension(app)
-
-@app.route('/login')
-def login():
-    """
-    Makes sure a user is logged in. This view function is required by Flask-Security.
-    """
-    if current_user.is_authenticated():
-        return redirect(url_for('index'))
-    else:
-        # Log in form
-        pass
-
-
 
 @app.route("/logout")
 #@login_required
@@ -51,9 +50,12 @@ def index():
     """
 
     print 'Index page'
-
-    return render_template('index.html')
-
+    user = {'nickname': 'Username'}  # fake user
+    posts = []
+    return render_template("index.html",
+                           title='Home',
+                           user=user,
+                           posts=posts)
 
 
 @app.errorhandler(404)
@@ -70,5 +72,3 @@ def internal_server_error(e):
     Standard 500
     """
     return render_template('500.html'), 500
-
-

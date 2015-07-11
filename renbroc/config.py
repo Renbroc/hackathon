@@ -2,8 +2,9 @@ import os
 
 class Config(object):
     """
-    Base configuration, extended by classes below. 
+    Base configuration, extended by classes below.
     """
+    WTF_CSRF_ENABLED = True
     VERSION = '0.1.0'
     DEBUG = True
     SECURITY_TRACKABLE = True
@@ -18,7 +19,7 @@ class LocalConfig(Config):
 
 class DevelopmentConfig(Config):
     """
-    Config used on the development server. 
+    Config used on the development server.
     """
     DEBUG = True
     #TESTING = False
@@ -33,7 +34,7 @@ class TestingConfig(Config):
 
 class ProductionConfig(Config):
     """
-    Config used in production. 
+    Config used in production.
     """
     DEBUG = False
     #TESTING = False
