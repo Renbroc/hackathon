@@ -1,8 +1,18 @@
-#nav, #body-container{
+#nav{
     padding: 5px;
 }
 #nav a{
     margin: 0 10px;
+}
+.row {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+.check{
+    cursor: pointer;
+}
+a:hover{
+    text-decoration:none;
 }
 .radar-chart .area {
     fill-opacity: 0.7;
