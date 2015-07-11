@@ -1,5 +1,7 @@
 <html>
 <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/style.css">
     {% if title %}
     <title>{{ title }} - microblog</title>
     {% else %}
@@ -7,7 +9,7 @@
     {% endif %}
 </head>
 <body>
-    <div>Nav: <a href="/index">Home</a></div>
+    <div id="nav">Nav: <a href="/index">Home</a></div>
     <hr>
     {% with messages = get_flashed_messages() %}
     {% if messages %}

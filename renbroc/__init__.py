@@ -1,5 +1,5 @@
 from flask import Flask, url_for
-
+from flask.ext.sqlalchemy import SQLAlchemy
 
 from renbroc.config import *
 
@@ -11,9 +11,11 @@ app = Flask(__name__, static_url_path='/static')
 config = os.getenv('CONFIG_OBJECT', 'LocalConfig')
 #print 'loading config:', config
 app.config.from_object(eval(config))
+db = SQLAlchemy(app)
 
 
-import renbroc.views
+import renbroc.views, renbroc.models
+# from app import views, models
 
 
 #from api import api
@@ -22,4 +24,3 @@ import renbroc.views
 
 
 #from renbroc.admin import renbroc_admin
-
