@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<div id="body-container">
+
+<ol>
+{% for url in urls %}
+
+<li>{{ url.url_raw }}</li>
+
+{% endfor %}
+</ol>
+</div>
+{% endblock %}
