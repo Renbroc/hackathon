@@ -1,12 +1,15 @@
 from flask import g, render_template, session, flash, request, redirect, url_for, Response, send_file, make_response
 from flask.ext.security import login_required, current_user, logout_user
+
 from renbroc import app
+
+from renbroc import db
 
 import datetime
 
 from renbroc.forms import LoginForm
 
-#from models import *
+from models import *
 
 from werkzeug import secure_filename
 
@@ -60,6 +63,20 @@ def index():
                            title='Home',
                            user=user,
                            posts=posts)
+
+@app.route('/db_test', methods=['GET', 'POST'])
+#@login_required
+def db_test():
+    """
+    Test database interaction
+    """
+
+    print 'Index page'
+    urls = db.session.query(Url).limit(10)
+
+    return render_template("test.html", urls=urls)
+
+
 
 
 @app.errorhandler(404)
