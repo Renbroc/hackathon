@@ -27,6 +27,13 @@ Run the web server
 
     python runserver.py
 
+Import the database (using command line):
+- create database renbroc;
+- grant all privileges on renbroc.* to ren_user@localhost identified by 'ren_pass';
+- use renbroc;
+- source /full/path/to/renbroc.sql
+
+
 ## Pay Attention To:
 - [http://flask.pocoo.org/docs/0.10/]Flack Documentation!
 - views.py : This will hold URL information, and what templates to pull in
