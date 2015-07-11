@@ -36,7 +36,9 @@ Run the web server
 - [http://flask.pocoo.org/docs/0.10/patterns/packages/](More information) about project directory setup
 
 Example of config:
-- app.config['OKTA_LOGIN_URL']
+- app.config['CONFIG_VAR_NAME']
+
+
 
 ## Future
 
