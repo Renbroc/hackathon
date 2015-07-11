@@ -27,6 +27,14 @@ Run the web server
 
     python runserver.py
 
+## Pay Attention To:
+- [http://flask.pocoo.org/docs/0.10/]Flack Documentation!
+- views.py : This will hold URL information, and what templates to pull in
+- templates/ : Directory with template files. [http://jinja.pocoo.org/docs/dev/](Tempalte Docs)
+- static/ : Directory with static files: js, css, images
+- models.py : Blank currently, will have model info as we create
+- [http://flask.pocoo.org/docs/0.10/patterns/packages/](More information) about project directory setup
+
 ## Future
 
 Need to do:
