@@ -29,7 +29,7 @@ class Clickstream(db.Model):
     wapo_id = Column(Integer, nullable=False)
 
 
-class Comment(Base):
+class Comment(db.Model):
     __tablename__ = 'comment'
 
     id = Column(Integer, primary_key=True)
@@ -39,7 +39,7 @@ class Comment(Base):
     actor_id = Column(String(32), nullable=False)
 
 
-class Content(Base):
+class Content(db.Model):
     __tablename__ = 'content'
 
     id = Column(Integer, primary_key=True)
@@ -48,7 +48,7 @@ class Content(Base):
     content = Column(Text, nullable=False)
 
 
-class Newswhip(Base):
+class Newswhip(db.Model):
     __tablename__ = 'newswhip'
 
     id = Column(Integer, primary_key=True)
@@ -86,14 +86,14 @@ class Newswhip(Base):
     has_video = Column(Integer, nullable=False)
 
 
-class NewswhipTopic(Base):
+class NewswhipTopic(db.Model):
     __tablename__ = 'newswhip_topic'
 
     id = Column(Integer, primary_key=True)
     name = Column(String(32), nullable=False)
 
 
-class NewswhipTopicSet(Base):
+class NewswhipTopicSet(db.Model):
     __tablename__ = 'newswhip_topic_set'
 
     id = Column(Integer, primary_key=True)
@@ -101,7 +101,7 @@ class NewswhipTopicSet(Base):
     topic_id = Column(Integer, nullable=False)
 
 
-class Url(Base):
+class Url(db.Model):
     __tablename__ = 'urls'
 
     id = Column(Integer, primary_key=True)
