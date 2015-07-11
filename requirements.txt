@@ -9,3 +9,4 @@ sqlalchemy-migrate
 nltk==3.0.3
 Flask-SQLAlchemy==2.0
 SQLAlchemy==1.0.4
+mysql-connector-python==1.2.3
