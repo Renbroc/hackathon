@@ -1,9 +1,13 @@
 import os
+basedir = os.path.abspath(os.path.dirname(__file__))
 
 class Config(object):
     """
     Base configuration, extended by classes below.
     """
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'renbroc.db')
+    SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
+
     WTF_CSRF_ENABLED = True
     VERSION = '0.1.0'
     DEBUG = True

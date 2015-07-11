@@ -1,7 +1,5 @@
 from flask import g, render_template, session, flash, request, redirect, url_for, Response, send_file, make_response
-
 from flask.ext.security import login_required, current_user, logout_user
-
 from renbroc import app
 
 import datetime
