@@ -35,6 +35,9 @@ Run the web server
 - models.py : Blank currently, will have model info as we create
 - [http://flask.pocoo.org/docs/0.10/patterns/packages/](More information) about project directory setup
 
+Example of config:
+- app.config['OKTA_LOGIN_URL']
+
 ## Future
 
 Need to do:
