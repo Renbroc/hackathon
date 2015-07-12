@@ -2,14 +2,30 @@
 
 Renaissance Broccoli will make you want to eat your vegetables first. 
 
-[http://google.com/](URL Example-Google)
+## Project Info
+OUR GOAL is to serve up high-quality but low-attention content to audiences who would otherwise have missed it.
 
-- List item 1
+THE PROBLEM
 
-- List item 2
+Journalists and their publishers want you to read their work. You want to read good work. But existing recommendation engines and trending topic tallies have a few key gaps.
+
+1. The "Ren": Information bubbles and becoming well-rounded. Modern news consumption is generally balkanizing: echo chambers abound and we curate our social feeds and news aggregators in such a way that we are likely to see lots of information relating to our key interests… but not so much about anything else. Lots of other work -- potentially important, high-quality, or meaningful -- stories just might not float across our streams. To become a true renaissance (wo)man, you need to know what it is you don't know and fill in your areas of weakness, not just reinforce your strengths.
+
+2. The "Broc": Stories that tend to trend the most quickly or the most virally aren't necessarily the important, in-depth, investigative, or uncomfortable stories that really need to be heard. Research-heavy, "unsexy" work by both major news outlets as well as by advocacy-heavy nonprofits is critical but rarely travels as well as stories about entertainment, arts, and the like.
+
+In short, your media diet can't just be tasty junk food. You need your broccoli, too.
+
+Stories about major regulatory, political, international, and social issues might be interesting and high-quality, with solid reporting and compelling writing -- but if they don't first come across your path their quality doesn't matter, because you aren't reading them. So we want to draw your attention to them.
+
+THE SOLUTION
+
+We compare interactions -- comments and social interactions -- against page views to find stories that have heavily engaged the audience that has read them, but that haven't spread very far, and have low view counts. We then recommend these stories to users, giving them an interface to find some broccoli to add to their media diet, and a way to see what they have read and how well-rounded their diet really is.
+
+### Project Presentation
+https://docs.google.com/presentation/d/1XemqiDHPRvLryLiI268vzJQzPt3kbOxX39OQMKc9Qds/edit?usp=sharing
 
 
-## Sub head
+## Development
 
 Install Python requirements:
 
