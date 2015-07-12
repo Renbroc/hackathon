@@ -10,7 +10,7 @@
         <div class="list-group">
             {% for i in range(5) %}
             <li class="list-group-item">
-                <svg class="check" style="float:right;" width="27px" style="vertical-align: middle;" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                <svg class="check" id="a-{{i+1}}" style="float:right;" width="27px" style="vertical-align: middle;" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                 viewBox="-168 -99 25 25" enable-background="new -168 -99 25 25" xml:space="preserve">
                 <g>
                     <path fill="#8E8E8E" d="M-150.4-91.2l-7.5,7.6l-2.8-2.8l-1.1,1.1l3.4,3.4c0.2,0.2,0.4,0.3,0.5,0.3c0.2,0,0.4-0.1,0.5-0.3l8-8.1
@@ -28,52 +28,27 @@
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="col-xs-12">
+        <h2>History</h2>
+    </div>
+</div>
+<div class="row history">
+    {% for i in range(5) %}
+        <div class="col-sm-4">
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">Topic {{i+1}}</div>
+                <!-- <div class="panel-body">
+                    <p>...</p>
+                </div> -->
 
-
-<script>
-RadarChart.defaultConfig.color = function() {};
-RadarChart.defaultConfig.radius = 0;
-RadarChart.defaultConfig.w = 200;
-RadarChart.defaultConfig.h = 200;
-
-var data = [
-{
-    className: 'germany', // optional can be used for styling
-    axes: [
-        {axis: "topic 1", value: 13},
-        {axis: "topic 2", value: 6},
-        {axis: "topic 3", value: 5},
-        {axis: "topic 4", value: 9},
-        {axis: "topic 5", value: 2}
-    ]
-}
-];
-function randomDataset() {
-    return data.map(function(d) {
-        return {
-            className: d.className,
-            axes: d.axes.map(function(axis) {
-                return {axis: axis.axis, value: Math.ceil(Math.random() * 10)};
-            })
-        };
-    });
-}
-
-var chart = RadarChart.chart();
-var cfg = chart.config(); // retrieve default config
-var svg = d3.select('#radar-chart').append('svg')
-.attr('width', 400)
-.attr('height', cfg.h + cfg.h / 4);
-svg.append('g').classed('single', 1).attr('transform', 'translate(50, 0)').datum(randomDataset()).call(chart);
-
-d3.selectAll('text').style('text-anchor', 'middle')
-d3.selectAll('.check').on('mouseover', function(d){
-    d3.select(this).selectAll("path").style("fill", "#1FBF24");
-}).on("mouseout", function(d){
-    d3.select(this).selectAll("path").style("fill", "#8e8e8e");
-}).on("click", function(d){
-    d3.select(this.parentNode).style("display", "none");
-})
-
-</script>
+                <ul class="list-group" id="cat-a-{{i+1}}">
+                    <li class="list-group-item">History 1</li>
+                    <li class="list-group-item">History 2</li>
+                </ul>
+            </div>
+        </div>
+    {% endfor %}
+</div>
 {% endblock %}
