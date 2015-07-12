@@ -11,9 +11,9 @@
 </ol>
  -->
 <ul>
-{% for comment in comments %}
+{% for c in comments %}
 
-<li>{{ comments.comment }}</li>
+<li>{{ comments[:]['headline'] }}</li>
 
 {% endfor %}
 </ul>

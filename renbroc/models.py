@@ -1,5 +1,4 @@
 # coding: utf-8
-from sqlalchemy import Column, DateTime, Integer, String, Text, text, Date
 from sqlalchemy import BigInteger, Column, Date, DateTime, ForeignKey, Index
 from sqlalchemy import Integer, Numeric, SmallInteger, String, Table, Text, desc, distinct
 
@@ -42,6 +41,7 @@ class User(db.Model):
 
     def __repr__(self):
         return '<User %r>' % (self.username)
+        
 class Url(db.Model):
     __tablename__ = 'urls'
 
