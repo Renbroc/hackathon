@@ -4,6 +4,9 @@
 #nav a{
     margin: 0 10px;
 }
+p{
+    font-size: 12px;
+}
 .row {
     margin-right: 0px;
     margin-left: 0px;
@@ -26,12 +29,8 @@ a:hover{
 .radar-chart.focus .area.focused {
     fill-opacity: 0.9;
 }
-.area.germany, .germany .circle {
-    fill: #FFD700;
-    stroke: none;
-}
-.area.argentina, .argentina .circle {
-    fill: #ADD8E6;
+.area.stats, .stats .circle {
+    fill: #8c00ff;
     stroke: none;
 }
 .radar-chart .axis line {
@@ -48,4 +47,61 @@ text{
 }
 ul{
     margin: 0 0;
+}
+
+.list-group-item{
+    border-left-width: 7px;
+}
+
+.panel-heading{
+    border-left-width: 7px;
+}
+
+#li-1{
+    border-left-color: #F41120;
+}
+
+#li-2{
+    border-left-color: #FB7507;
+}
+
+#li-3{
+    border-left-color: #F4E001;
+}
+
+#li-4{
+    border-left-color: #13B622;
+}
+
+#li-5{
+    border-left-color: #0081C6;
+}
+
+#panel-1 .panel-heading polygon{
+    fill: #F41120;
+    stroke: #F41120;
+}
+
+#panel-2 .panel-heading polygon{
+    fill: #FB7507;
+    stroke:#FB7507;
+}
+
+#panel-3 .panel-heading polygon{
+    fill: #F4E001;
+    stroke: #F4E001;
+}
+
+#panel-4 .panel-heading polygon{
+    fill: #13B622;
+    stroke: #13B622;
+}
+
+#panel-5 .panel-heading polygon{
+    fill: #0081C6;
+    stroke: #0081C6;
+}
+
+.col-sm-4 .list-group-item-text{
+    display:none;
 }

@@ -78,7 +78,9 @@ def user_page():
 
     articles = under_urls[:5]
 
-    return render_template('user_page.html', articles=articles)
+    rand_history = [2, 3, 4, 1, 3]
+
+    return render_template('user_page.html', articles=articles, rand_history=rand_history)
 
 
 

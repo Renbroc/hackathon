@@ -9,7 +9,7 @@
         <h2>Today's recommended brainfood</h2>
         <div class="list-group">
             {% for article in articles %}
-            <li class="list-group-item">
+            <li class="list-group-item" id="li-{{loop.index}}">
                 <svg class="check" id="a-{{loop.index}}" style="float:right;" width="27px" style="vertical-align: middle;" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                 viewBox="-168 -99 25 25" enable-background="new -168 -99 25 25" xml:space="preserve">
                 <g>
@@ -22,7 +22,7 @@
                 </g>
             </svg>
             <a href="{{article.url_raw}}" target="_blank"><h4 class="list-group-item-heading">{{ article.newswhip[0].headline }}</h4></a>
-            <p class="list-group-item-text">{{article.newswhip[0].headline}}</p>
+            <p class="list-group-item-text">{{article.newswhip[0].excerpt}}</p>
             </li>
             {% endfor %}
         </div>
@@ -36,16 +36,21 @@
 <div class="row history">
     {% for i in range(5) %}
         <div class="col-sm-4">
-            <div class="panel panel-default">
+            <div class="panel panel-default" id="panel-{{i+1}}">
                 <!-- Default panel contents -->
-                <div class="panel-heading">Topic {{i+1}}</div>
+                <div class="panel-heading">Topic {{i+1}}
+                    <span style="float:right;"><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+                        <polygon fill="#1D1D1B" stroke="#1D1D1B" stroke-width="37.6152" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="  259.216,29.942 330.27,173.919 489.16,197.007 374.185,309.08 401.33,467.31 259.216,392.612 117.104,467.31 144.25,309.08   29.274,197.007 188.165,173.919 "/>
+                    </svg></span>
+                </div>
                 <!-- <div class="panel-body">
                     <p>...</p>
                 </div> -->
 
                 <ul class="list-group" id="cat-a-{{i+1}}">
-                    <li class="list-group-item">History 1</li>
-                    <li class="list-group-item">History 2</li>
+                    {% for j in range(rand_history[i]) %}
+                        <li class="list-group-item">History {{rand_history[i]+j+1-rand_history[i]}}</li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>
