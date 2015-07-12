@@ -44,8 +44,16 @@ def logout():
 @app.route("/user_page")
 #@login_required
 def user_page():
+    under_urls = db.session.query(Url).join(Url.newswhip)\
+        .filter(Url.visit_count >= 50)\
+        .filter(Url.comment_count >= (Url.visit_count * 10))\
+        .order_by(desc(Url.comment_count))
 
-    return render_template('user_page.html')
+    articles = under_urls[:5]
+
+    
+
+    return render_template('user_page.html', articles=articles)
 
 
 

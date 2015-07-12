@@ -8,9 +8,9 @@
     <div class="col-sm-8">
         <h2>Today's recommended brainfood</h2>
         <div class="list-group">
-            {% for i in range(5) %}
+            {% for article in articles %}
             <li class="list-group-item">
-                <svg class="check" id="a-{{i+1}}" style="float:right;" width="27px" style="vertical-align: middle;" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                <svg class="check" id="a-{{loop.index}}" style="float:right;" width="27px" style="vertical-align: middle;" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                 viewBox="-168 -99 25 25" enable-background="new -168 -99 25 25" xml:space="preserve">
                 <g>
                     <path fill="#8E8E8E" d="M-150.4-91.2l-7.5,7.6l-2.8-2.8l-1.1,1.1l3.4,3.4c0.2,0.2,0.4,0.3,0.5,0.3c0.2,0,0.4-0.1,0.5-0.3l8-8.1
@@ -21,8 +21,8 @@
                     </g>
                 </g>
             </svg>
-                <a href="#" target="_blank"><h4 class="list-group-item-heading">Article {{i+1}}</h4></a>
-                <p class="list-group-item-text">Some text about article {{i+1}}.</p>
+            <a href="{{article.url_raw}}" target="_blank"><h4 class="list-group-item-heading">{{ article.newswhip[0].headline }}</h4></a>
+            <p class="list-group-item-text">{{article.newswhip[0].headline}}</p>
             </li>
             {% endfor %}
         </div>
