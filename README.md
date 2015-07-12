@@ -34,6 +34,11 @@ Update database:
     use renbroc;
     source /full/path/to/renbroc.sql
 
+Update Urls
+
+    use renbroc;
+    drop table urls;
+    source /full/path/to/renbroc_urls.sql
 
 
 

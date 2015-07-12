@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<div id="body-container">
+
+<ol>
+{% for url in urls %}
+
+<li>
+    <a href="{{ url.url_raw }}">{{ url.newswhip[0].headline }}</a> / Views: {{ url.visit_count }} / Comments: {{ url.comment_count }}<br />
+    <img src="{{ url.newswhip[0].image_link }}" width="542">
+</li>
+
+{% endfor %}
+</ol>
+
+
+</div>
+{% endblock %}

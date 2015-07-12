@@ -8,6 +8,8 @@ from renbroc.config import *
 
 import logging
 
+import nltk
+
 app = Flask(__name__, static_url_path='/static')
 
 # Edit database connection below
