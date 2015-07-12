@@ -116,6 +116,33 @@ def db_test():
         urls=urls)
 
 
+@app.route('/nltk', methods=['GET', 'POST'])
+#@login_required
+def nltk():
+    """
+    words n shit
+    """
+
+    print 'NLTK in python'
+
+    # urls = db.session.query(Url).limit(10)
+
+    comments = db.session.query(Newswhip).limit(20)
+    print comments[:]
+
+
+    # under_urls = db.session.query(Url).join(Url.newswhip)\
+    #     .filter(Url.visit_count >= 50)\
+    #     .filter(Url.comment_count >= (Url.visit_count / 2))\
+    #     .order_by(Url.visit_count)
+
+
+    return render_template("nltk.html", 
+        comments=comments
+        # urls=urls
+        )
+
+
 
 @app.route('/under_urls/<visit_count>/<breakoff>', methods=['GET', 'POST'])
 #@login_required
