@@ -2,12 +2,19 @@
 from sqlalchemy import Column, DateTime, Date, Integer, String, Text, text
 from sqlalchemy.ext.declarative import declarative_base
 
+from sqlalchemy.orm import relationship, backref
+
 from renbroc import db
 
 
 Base = declarative_base()
 metadata = Base.metadata
 
+
+newswhip_topic_set = db.Table('newswhip_topic_set', metadata,
+    db.Column('newswhip_id', db.Integer, db.ForeignKey('newswhip.id')),
+    db.Column('topic_id', db.Integer, db.ForeignKey('newswhip_topic.id'))
+)
 
 
 class User(db.Model):
@@ -26,6 +33,8 @@ class ClickstreamAgg(db.Model):
 
     id = Column(Integer, primary_key=True)
     url_id = Column(Integer, nullable=False, index=True)
+    url = relationship('Url', backref=backref('clicks_agg', order_by=id))
+
     date_click = Column(Date, nullable=False, index=True)
     click_count = Column(Integer, nullable=False)
 
@@ -35,6 +44,8 @@ class Comment(db.Model):
 
     id = Column(Integer, primary_key=True)
     url_id = Column(Integer, nullable=False, index=True)
+    url = relationship('Url', backref=backref('comments', order_by=id))
+
     url_text = Column(String(255), nullable=False, index=True)
     comment = Column(Text, nullable=False)
     actor_id = Column(String(32), nullable=False, index=True)
@@ -45,6 +56,8 @@ class CommentAgg(db.Model):
 
     id = Column(Integer, primary_key=True)
     url_id = Column(Integer, nullable=False, index=True)
+    url = relationship('Url', backref=backref('comments_agg', order_by=id))
+
     actor_id = Column(String(32), nullable=False, index=True)
     comment_count = Column(Integer, nullable=False)
 
@@ -55,6 +68,8 @@ class Newswhip(db.Model):
 
     id = Column(Integer, primary_key=True)
     url_id = Column(Integer, nullable=False, index=True)
+    url = relationship('Url', backref=backref('newswhip', order_by=id))
+
     link_text = Column(String(255), nullable=False)
     headline = Column(String(128), nullable=False)
     excerpt = Column(Text, nullable=False)
@@ -83,13 +98,10 @@ class NewswhipTopic(db.Model):
     name = Column(String(32), nullable=False)
     num_articles = Column(Integer, nullable=False)
 
+    newswhips = db.relationship('Newswhip', secondary=newswhip_topic_set,
+        backref=db.backref('topics', lazy='dynamic'), lazy='dynamic')
 
-class NewswhipTopicSet(db.Model):
-    __tablename__ = 'newswhip_topic_set'
 
-    id = Column(Integer, primary_key=True)
-    newswhip_id = Column(Integer, nullable=False)
-    topic_id = Column(Integer, nullable=False)
 
 
 class Url(db.Model):
