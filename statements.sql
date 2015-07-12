@@ -25,13 +25,13 @@ UPDATE `clickstream_raw` c, urls u SET c.url_id = u.id WHERE CONCAT(c.raw_url, '
 # Rows matched: 1336236  Changed: 1336236  Warnings: 0
 
 UPDATE `clickstream_raw` c, urls u SET c.url_id = u.id WHERE CONCAT(c.raw_url, '/') = u.url_no_www;
-#
+# Rows matched: 0  Changed: 0  Warnings: 0
 
 UPDATE `clickstream_raw` c, urls u SET c.url_id = u.id WHERE CONCAT(c.raw_url, '/') = u.url_no_http_www;
-#
+# Rows matched: 0  Changed: 0  Warnings: 0
 
 UPDATE `clickstream_raw` c, urls u SET c.url_id = u.id WHERE CONCAT(c.raw_url, '/') = u.url_raw;
-#
+# Rows matched: 5  Changed: 5  Warnings: 0
 
 
 UPDATE `urls` u SET comment_count = (
