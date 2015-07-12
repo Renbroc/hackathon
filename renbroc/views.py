@@ -12,6 +12,8 @@ from renbroc.forms import LoginForm
 
 from models import *
 
+from sqlalchemy.sql import func
+
 from werkzeug import secure_filename
 
 @app.route('/register' , methods=['GET','POST'])
@@ -118,6 +120,33 @@ def db_test():
         urls=urls)
 
 
+@app.route('/nltk', methods=['GET', 'POST'])
+#@login_required
+def nltk():
+    """
+    words n shit
+    """
+
+    print 'NLTK in python'
+
+    # urls = db.session.query(Url).limit(10)
+
+    comments = db.session.query(Newswhip).limit(20)
+    print comments[:]
+
+
+    # under_urls = db.session.query(Url).join(Url.newswhip)\
+    #     .filter(Url.visit_count >= 50)\
+    #     .filter(Url.comment_count >= (Url.visit_count / 2))\
+    #     .order_by(Url.visit_count)
+
+
+    return render_template("nltk.html", 
+        comments=comments
+        # urls=urls
+        )
+
+
 
 @app.route('/under_urls/<visit_count>/<breakoff>', methods=['GET', 'POST'])
 #@login_required
@@ -139,6 +168,32 @@ def under_urls(visit_count=50, breakoff=0.5):
 
     return render_template("urls.html",
         urls=under_urls)
+
+
+@app.route('/burner_urls/<visit_count>/<day_count>', methods=['GET', 'POST'])
+#@login_required
+def burner_urls(visit_count=50, day_count=5):
+    """
+    Slow burner urls
+    """
+
+    print 'Underappretiated page'
+
+    burner_urls = db.session.query(Url, func.count('*').label('count'))\
+        .join(Url.newswhip)\
+        .join(Url.clicks_agg)\
+        .filter(Url.visit_count >= visit_count)\
+        .having(func.count('*') >= day_count)\
+        .group_by(Url.id)\
+        .order_by(desc('count'))
+
+    print burner_urls
+
+    print burner_urls[0][0]
+
+    return render_template("burners.html", 
+        urls=burner_urls)
+
 
 
 @app.errorhandler(404)
