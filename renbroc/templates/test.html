@@ -9,5 +9,15 @@
 
 {% endfor %}
 </ol>
+
+<ul>
+{% for comment in comments %}
+
+<li>{{ comments.comment }}</li>
+<li>{{ comments.url.url_raw }}</li>
+
+{% endfor %}
+</ul>
+
 </div>
 {% endblock %}

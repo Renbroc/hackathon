@@ -72,7 +72,10 @@ def db_test():
     """
 
     print 'Test DB page'
+
     urls = db.session.query(Url).limit(10)
+    
+    comments = db.session.query(Comment).limit(50)
 
     xxx_urls = db.session.query(Url).join(Url.clicks_agg).filter(MemTwitterMessageUserSet.msg_date.in_(date_list)).filter(DataShingleSearch.shingle.like('%'+search_string+'%')).order_by(desc('count')).group_by(DataShingleSearch.id)
 
@@ -80,7 +83,10 @@ def db_test():
         .filter(Url.comment_count >= 5)\
         .order_by(Url.comment_count)
 
-    return render_template("test.html", urls=urls)
+
+    return render_template("test.html", 
+        comments=comments,
+        urls=urls)
 
 
 
