@@ -2,19 +2,18 @@
 {% block content %}
 <div id="body-container">
 
-<ol>
+<!-- <ol>
 {% for url in urls %}
 
 <li>{{ url.url_raw }}</li>
 
 {% endfor %}
 </ol>
-
+ -->
 <ul>
 {% for comment in comments %}
 
 <li>{{ comments.comment }}</li>
-<li>{{ comments.url.url_raw }}</li>
 
 {% endfor %}
 </ul>
