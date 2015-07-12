@@ -7,12 +7,13 @@ setwd("/Users/christinezhang/Desktop/Hackathon2015_WashingtonPost")
 list.files()
 urls <- read.csv('urls.csv')
 urls <- urls[order(-urls$visit_count), ]
-View(urls)
+head(urls)
+urls <- urls[urls$comment_count > 0 & urls$visit_count > 0, ]
+summary(urls)
+urls$l.comment <- log(urls$comment_count) 
+urls$l.visit <- log(urls$visit_count) 
 
-urls$l.comment <- log(urls$comment_count)
-urls$l.visit <- log(urls$visit_count)
-
-ggplot(urls[urls$l.comment > 0 & urls$l.visit > 0 ,], aes(x = l.visit, y = l.comment)) + 
+ggplot(urls, aes(x = l.visit, y = l.comment)) + 
   geom_point(color = 'darkblue')+
   geom_line(stat='smooth')+
   theme_bw()+
@@ -22,7 +23,7 @@ ggplot(urls[urls$l.comment > 0 & urls$l.visit > 0 ,], aes(x = l.visit, y = l.com
   
 ggsave('scatter.png', width=8)
 
-summary(m1 <- glm(comment_count ~ visit_count, family="poisson", data= urls))
+summary(m1 <- glm(l.comment ~ l.visit, family="gaussian", data= urls))
 cov.m1 <- vcovHC(m1, type="HC0")
 std.err <- sqrt(diag(cov.m1))
 r.est <- cbind(Estimate= coef(m1), "Robust SE" = std.err,
@@ -31,6 +32,20 @@ r.est <- cbind(Estimate= coef(m1), "Robust SE" = std.err,
                UL = coef(m1) + 1.96 * std.err)
 
 r.est # poisson regression example
+
+
+## calculate and store predicted values
+urls$phat <- predict(m1, type="response")
+
+## a better scatter
+ggplot(urls[urls$visit_count>0&urls$visit_count>0, ], aes(x = l.visit, y = phat)) +
+  geom_point(aes(y = l.comment), colour = 'darkblue', alpha=.75, position=position_jitter(h=.2)) +
+  geom_line(size = 1) +
+  theme_bw()+
+  theme(axis.text = element_blank(), axis.ticks = element_blank())+
+  labs(x = "", y = "")
+
+ggsave("hiddengems.png", width=8)
 
 # other data file - from newswhip.json
 dat1 <- read.csv("data_1_2966.csv")
