@@ -73,8 +73,11 @@ def db_test():
 
     print 'Index page'
     urls = db.session.query(Url).limit(10)
+    comments = db.session.query(Comment).limit(50)
 
-    return render_template("test.html", urls=urls)
+    return render_template("test.html", 
+        comments=comments,
+        urls=urls)
 
 
 
