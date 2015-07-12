@@ -71,8 +71,14 @@ def db_test():
     Test database interaction
     """
 
-    print 'Index page'
+    print 'Test DB page'
     urls = db.session.query(Url).limit(10)
+
+    xxx_urls = db.session.query(Url).join(Url.clicks_agg).filter(MemTwitterMessageUserSet.msg_date.in_(date_list)).filter(DataShingleSearch.shingle.like('%'+search_string+'%')).order_by(desc('count')).group_by(DataShingleSearch.id)
+
+    yyy_urls = db.session.query(Url).join(Url.clicks_agg)\
+        .filter(Url.comment_count >= 5)\
+        .order_by(Url.comment_count)
 
     return render_template("test.html", urls=urls)
 

@@ -10,18 +10,28 @@ UPDATE `newswhip_topic` t SET num_articles = (SELECT COUNT(*) FROM newswhip_topi
 
 
 UPDATE `clickstream_raw` c, urls u SET c.url_id = u.id WHERE c.raw_url = u.url_no_http;
-#Rows matched: 810013  Changed: 810013  Warnings: 0
+# Rows matched: 810013  Changed: 810013  Warnings: 0
 
 UPDATE `clickstream_raw` c, urls u SET c.url_id = u.id WHERE c.raw_url = u.url_no_www;
-#Rows matched: 1799  Changed: 0  Warnings: 0
-
+# Rows matched: 1799  Changed: 0  Warnings: 0
 
 UPDATE `clickstream_raw` c, urls u SET c.url_id = u.id WHERE c.raw_url = u.url_no_http_www;
-#Rows matched: 1799  Changed: 0  Warnings: 0
-
+# Rows matched: 1799  Changed: 0  Warnings: 0
 
 UPDATE `clickstream_raw` c, urls u SET c.url_id = u.id WHERE c.raw_url = u.url_raw;
-#Rows matched: 26400  Changed: 24601  Warnings: 0
+# Rows matched: 26400  Changed: 24601  Warnings: 0
+
+UPDATE `clickstream_raw` c, urls u SET c.url_id = u.id WHERE CONCAT(c.raw_url, '/') = u.url_no_http;
+# Rows matched: 1336236  Changed: 1336236  Warnings: 0
+
+UPDATE `clickstream_raw` c, urls u SET c.url_id = u.id WHERE CONCAT(c.raw_url, '/') = u.url_no_www;
+#
+
+UPDATE `clickstream_raw` c, urls u SET c.url_id = u.id WHERE CONCAT(c.raw_url, '/') = u.url_no_http_www;
+#
+
+UPDATE `clickstream_raw` c, urls u SET c.url_id = u.id WHERE CONCAT(c.raw_url, '/') = u.url_raw;
+#
 
 
 UPDATE `urls` u SET comment_count = (
