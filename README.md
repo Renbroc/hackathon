@@ -27,6 +27,16 @@ Run the web server
 
     python runserver.py
 
+Update database:
+
+    drop database renbroc;
+    create database renbroc;
+    use renbroc;
+    source /full/path/to/renbroc.sql
+
+
+
+
 Import the database (using command line):
 - create database renbroc;
 - grant all privileges on renbroc.* to ren_user@localhost identified by 'ren_pass';
