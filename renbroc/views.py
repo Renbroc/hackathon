@@ -133,7 +133,9 @@ def under_urls(visit_count=50, breakoff=0.5):
     under_urls = db.session.query(Url).join(Url.newswhip)\
         .filter(Url.visit_count >= visit_count)\
         .filter(Url.comment_count >= (Url.visit_count * breakoff))\
-        .order_by(desc(Url.comment_count))
+        .order_by(Url.visit_count)
+
+    print under_urls
 
     print under_urls[0].newswhip
 

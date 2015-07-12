@@ -17,7 +17,7 @@ newswhip_topic_set = db.Table('newswhip_topic_set', metadata,
     db.Column('newswhip_id', db.Integer, db.ForeignKey('newswhip.id')),
     db.Column('topic_id', db.Integer, db.ForeignKey('newswhip_topic.id'))
 )
-"""
+#"""
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -125,6 +125,7 @@ class NewswhipTopic(db.Model):
 
     #newswhips = db.relationship('Newswhip', secondary=newswhip_topic_set,
     #    backref=db.backref('topics', lazy='dynamic'), lazy='dynamic')
+    
     def __repr__(self):
         return "<NewswhipTopic(id='%s', topic='%s')>" % (
                                 self.id, self.name)
