@@ -1,5 +1,8 @@
+import os
 from flask import Flask, url_for
 from flask.ext.sqlalchemy import SQLAlchemy
+from flask.ext.login import LoginManager
+from flask.ext.openid import OpenID
 
 from renbroc.config import *
 
@@ -19,10 +22,13 @@ app.config.from_object(eval(config))
 
 db = SQLAlchemy(app)
 
+# from app import views, models
+lm = LoginManager()
+lm.init_app(app)
+# oid = OpenID(app, os.path.join(basedir, 'tmp'))
+lm.login_view = 'login'
 
 import renbroc.views, renbroc.models
-# from app import views, models
-
 
 #from api import api
 
