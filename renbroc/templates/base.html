@@ -12,8 +12,8 @@
 
     <div id="nav"><a href="/">Home</a> | <a href="/user_page">User Page</a>
 
-        {% if current_user %}
-        <span style="float:right;"> Hello, {{ current_user.username }}</span>
+        {% if g.user.is_authenticated() %}
+        <span style="float:right;"> <span class="user">Hello, {{ g.user.username }}</span> | <a href="{{ url_for('logout') }}">Logout</a></span>
         {% endif %}
     </div>
     <hr>

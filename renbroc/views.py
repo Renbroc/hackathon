@@ -14,6 +14,16 @@ from models import *
 
 from werkzeug import secure_filename
 
+@app.route('/register' , methods=['GET','POST'])
+def register():
+    if request.method == 'GET':
+        return render_template('register.html')
+    user = User(username=request.form['username'] , password=request.form['password'], id="37")
+    db.session.add(user)
+    db.session.commit()
+    login_user(user)
+    return redirect(url_for('index'))
+
 
 # index view function suppressed for brevity
 @lm.user_loader
@@ -26,17 +36,17 @@ def before_request():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    if g.user is not None and g.user.is_authenticated():
-        return redirect(url_for('Index'))
+    logout_user()
+    # if g.user is not None and g.user.is_authenticated():
+    #     return redirect(url_for('index'))
     form = LoginForm()
     if form.validate_on_submit():
         session['remember_me'] = form.remember_me.data
-        login_user(User.query.filter_by(username=username,password=password))
-        return redirect(url_for('login'))
+        login_user(User.query.filter_by(username=request.form['username'],password=request.form['password']))
+        return redirect(url_for('user_page'))
     return render_template('login.html',
                            title='Sign In',
                            form=form)
-
 
 # Initialize toolbar
 #from flask_debugtoolbar import DebugToolbarExtension
@@ -56,7 +66,7 @@ def logout():
 
     logout_user()
 
-    return render_template('logout.html')
+    return render_template('index.html')
 
 @app.route("/user_page")
 #@login_required
@@ -68,17 +78,15 @@ def user_page():
 
     articles = under_urls[:5]
 
-    
-
     return render_template('user_page.html', articles=articles)
 
 
 
 @app.route('/', methods=['GET', 'POST'])
-@login_required
+# @login_required
 def index():
     user = g.user
-    if user is not None and g.user.is_authenticated():
+    if g.user is not None and g.user.is_authenticated():
         return redirect(url_for('user_page'))
     return render_template('index.html',
                            title='Home',
@@ -91,67 +99,10 @@ def db_test():
     Test database interaction
     """
 
-    print 'Test DB page'
-
+    print 'Index page'
     urls = db.session.query(Url).limit(10)
 
-    comments = db.session.query(Comment).limit(50)
-
-    under_urls = db.session.query(Url).join(Url.newswhip)\
-        .filter(Url.visit_count >= 50)\
-        .filter(Url.comment_count >= (Url.visit_count / 2))\
-        .order_by(Url.visit_count)
-
-
-    return render_template("test.html", 
-        under_urls=under_urls,
-        urls=urls)
-
-
-@app.route('/nltk', methods=['GET', 'POST'])
-#@login_required
-def nltk():
-    """
-    words n shit
-    """
-
-    print 'NLTK in python'
-
-    urls = db.session.query(Url).limit(10)
-
-    comments = db.session.query(Comment).limit(50)
-
-    under_urls = db.session.query(Url).join(Url.newswhip)\
-        .filter(Url.visit_count >= 50)\
-        .filter(Url.comment_count >= (Url.visit_count / 2))\
-        .order_by(Url.visit_count)
-
-
-    return render_template("nltk.html", 
-        # under_urls=under_urls,
-        urls=urls)
-
-
-
-@app.route('/under_urls/<visit_count>/<breakoff>', methods=['GET', 'POST'])
-#@login_required
-def under_urls(visit_count=50, breakoff=0.5):
-    """
-    Test database interaction
-    """
-
-    print 'Underappretiated page'
-
-    under_urls = db.session.query(Url).join(Url.newswhip)\
-        .filter(Url.visit_count >= visit_count)\
-        .filter(Url.comment_count >= (Url.visit_count * breakoff))\
-        .order_by(desc(Url.comment_count))
-
-    print under_urls[0].newswhip
-
-    return render_template("urls.html", 
-        urls=under_urls)
-
+    return render_template("test.html", urls=urls)
 
 
 
