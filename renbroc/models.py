@@ -1,5 +1,5 @@
 # coding: utf-8
-from sqlalchemy import Column, DateTime, Integer, String, Text, text
+from sqlalchemy import Column, DateTime, Date, Integer, String, Text, text
 from sqlalchemy.ext.declarative import declarative_base
 
 from renbroc import db
