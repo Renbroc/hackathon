@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<div id="body-container">
+
+<ol>
+{% for url in urls %}
+
+<li>
+    Newswhip id: {{ url[0].newswhip[0].id }} / {{ url[0].url_raw }}<br />
+    <a href="{{ url[0].url_raw }}">{{ url[0].newswhip[0].headline }}</a><br />
+    Views: {{ url[0].visit_count }} / Comments: {{ url[0].comment_count }} / Days: {{ url.count }}<br />
+
+</li>
+
+{% endfor %}
+</ol>
+
+
+</div>
+{% endblock %}
