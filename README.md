@@ -5,7 +5,7 @@ Renaissance Broccoli will make you want to eat your vegetables first.
 ## Project Info
 OUR GOAL is to serve up high-quality but low-attention content to audiences who would otherwise have missed it.
 
-THE PROBLEM
+### THE PROBLEM
 
 Journalists and their publishers want you to read their work. You want to read good work. But existing recommendation engines and trending topic tallies have a few key gaps.
 
@@ -17,12 +17,11 @@ In short, your media diet can't just be tasty junk food. You need your broccoli,
 
 Stories about major regulatory, political, international, and social issues might be interesting and high-quality, with solid reporting and compelling writing -- but if they don't first come across your path their quality doesn't matter, because you aren't reading them. So we want to draw your attention to them.
 
-THE SOLUTION
+### THE SOLUTION
 
 We compare interactions -- comments and social interactions -- against page views to find stories that have heavily engaged the audience that has read them, but that haven't spread very far, and have low view counts. We then recommend these stories to users, giving them an interface to find some broccoli to add to their media diet, and a way to see what they have read and how well-rounded their diet really is.
 
-### Project Presentation
-https://docs.google.com/presentation/d/1XemqiDHPRvLryLiI268vzJQzPt3kbOxX39OQMKc9Qds/edit?usp=sharing
+[Project presentation](https://docs.google.com/presentation/d/1XemqiDHPRvLryLiI268vzJQzPt3kbOxX39OQMKc9Qds/edit?usp=sharing)
 
 
 ## Development
