@@ -99,12 +99,44 @@ def db_test():
     Test database interaction
     """
 
-    print 'Index page'
+    print 'Test DB page'
+
     urls = db.session.query(Url).limit(10)
 
-    return render_template("test.html", urls=urls)
+    comments = db.session.query(Comment).limit(50)
+
+    under_urls = db.session.query(Url).join(Url.newswhip)\
+        .filter(Url.visit_count >= 50)\
+        .filter(Url.comment_count >= (Url.visit_count / 2))\
+        .order_by(Url.visit_count)
 
 
+    return render_template("test.html",
+        under_urls=under_urls,
+        urls=urls)
+
+
+
+@app.route('/under_urls/<visit_count>/<breakoff>', methods=['GET', 'POST'])
+#@login_required
+def under_urls(visit_count=50, breakoff=0.5):
+    """
+    Test database interaction
+    """
+
+    print 'Underappretiated page'
+
+    under_urls = db.session.query(Url).join(Url.newswhip)\
+        .filter(Url.visit_count >= visit_count)\
+        .filter(Url.comment_count >= (Url.visit_count * breakoff))\
+        .order_by(Url.visit_count)
+
+    print under_urls
+
+    print under_urls[0].newswhip
+
+    return render_template("urls.html",
+        urls=under_urls)
 
 
 @app.errorhandler(404)
