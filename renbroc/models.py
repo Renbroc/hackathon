@@ -1,5 +1,5 @@
 # coding: utf-8
-from sqlalchemy import Column, DateTime, Integer, String, Text, text
+from sqlalchemy import Column, DateTime, Integer, String, Text, text, Date
 from sqlalchemy.ext.declarative import declarative_base
 
 from renbroc import db
@@ -9,16 +9,28 @@ Base = declarative_base()
 metadata = Base.metadata
 
 
-
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    nickname = db.Column(db.String(64), index=True, unique=True)
-    email = db.Column(db.String(120), index=True, unique=True)
+    username = db.Column(db.String(64), index=True, unique=True)
+    password = db.Column(db.String(120), index=True, unique=True)
+
+    def is_authenticated(self):
+        return True
+
+    def is_active(self):
+        return True
+
+    def is_anonymous(self):
+        return False
+
+    def get_id(self):
+        try:
+            return unicode(self.id)  # python 2
+        except NameError:
+            return str(self.id)  # python 3
 
     def __repr__(self):
-        return '<User %r>' % (self.nickname)
-
-
+        return '<User %r>' % (self.username)
 
 
 class ClickstreamAgg(db.Model):
@@ -99,4 +111,3 @@ class Url(db.Model):
     url_raw = Column(String(255), nullable=False, index=True)
     comment_count = Column(Integer, nullable=False)
     visit_count = Column(Integer, nullable=False)
-
