@@ -5,7 +5,7 @@ from renbroc.config import *
 
 import logging
 
-from nltk import *
+import nltk
 
 app = Flask(__name__, static_url_path='/static')
 
