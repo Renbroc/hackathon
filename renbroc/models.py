@@ -36,6 +36,9 @@ class Url(db.Model):
     comment_count = Column(Integer, nullable=False)
     visit_count = Column(Integer, nullable=False)
 
+    def __repr__(self):
+        return "<Url(id='%s', url='%s')>" % (
+                                self.id, self.url_raw)
 
 
 class ClickstreamAgg(db.Model):
@@ -48,6 +51,9 @@ class ClickstreamAgg(db.Model):
     date_click = Column(Date, nullable=False, index=True)
     click_count = Column(Integer, nullable=False)
 
+    def __repr__(self):
+        return "<ClickstreamAgg(id='%s', url_id='%s', date_click='%s')>" % (
+                                self.id, self.url_id, self.date_click)
 
 class Comment(db.Model):
     __tablename__ = 'comment'
@@ -60,6 +66,9 @@ class Comment(db.Model):
     comment = Column(Text, nullable=False)
     actor_id = Column(String(32), nullable=False, index=True)
 
+    def __repr__(self):
+        return "<Comment(id='%s', url_id='%s', actor_id='%s')>" % (
+                                self.id, self.url_id, self.actor_id)
 
 class CommentAgg(db.Model):
     __tablename__ = 'comment_agg'
@@ -71,6 +80,9 @@ class CommentAgg(db.Model):
     actor_id = Column(String(32), nullable=False, index=True)
     comment_count = Column(Integer, nullable=False)
 
+    def __repr__(self):
+        return "<CommentAgg(id='%s', url_id='%s', actor_id='%s')>" % (
+                                self.id, self.url_id, self.actor_id)
 
 
 class Newswhip(db.Model):
@@ -100,6 +112,9 @@ class Newswhip(db.Model):
     image_link = Column(String(255), nullable=False)
     has_video = Column(Integer, nullable=False)
 
+    def __repr__(self):
+        return "<Newswhip(id='%s', headline='%s')>" % (
+                                self.id, self.headline)
 
 class NewswhipTopic(db.Model):
     __tablename__ = 'newswhip_topic'
@@ -110,4 +125,7 @@ class NewswhipTopic(db.Model):
 
     #newswhips = db.relationship('Newswhip', secondary=newswhip_topic_set,
     #    backref=db.backref('topics', lazy='dynamic'), lazy='dynamic')
+    def __repr__(self):
+        return "<NewswhipTopic(id='%s', topic='%s')>" % (
+                                self.id, self.name)
 

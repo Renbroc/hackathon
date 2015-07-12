@@ -102,7 +102,7 @@ def under_urls(visit_count=50, breakoff=0.5):
         .filter(Url.comment_count >= (Url.visit_count * breakoff))\
         .order_by(desc(Url.comment_count))
 
-    #print under_urls[0]
+    print under_urls[0].newswhip
 
     return render_template("urls.html", 
         urls=under_urls)
