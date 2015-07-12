@@ -75,16 +75,38 @@ def db_test():
 
     urls = db.session.query(Url).limit(10)
 
-    #comments = db.session.query(Comment).limit(50)
+    comments = db.session.query(Comment).limit(50)
 
-    yyy_urls = db.session.query(Url).join(Url.clicks_agg)\
-        .filter(Url.comment_count >= 5)\
-        .order_by(Url.comment_count)
+    under_urls = db.session.query(Url).join(Url.newswhip)\
+        .filter(Url.visit_count >= 50)\
+        .filter(Url.comment_count >= (Url.visit_count / 2))\
+        .order_by(Url.visit_count)
 
 
     return render_template("test.html", 
-        #comments=comments,
+        under_urls=under_urls,
         urls=urls)
+
+
+@app.route('/under_urls/<visit_count>/<breakoff>', methods=['GET', 'POST'])
+#@login_required
+def under_urls(visit_count=50, breakoff=0.5):
+    """
+    Test database interaction
+    """
+
+    print 'Underappretiated page'
+
+    under_urls = db.session.query(Url).join(Url.newswhip)\
+        .filter(Url.visit_count >= visit_count)\
+        .filter(Url.comment_count >= (Url.visit_count * breakoff))\
+        .order_by(desc(Url.comment_count))
+
+    #print under_urls[0]
+
+    return render_template("urls.html", 
+        urls=under_urls)
+
 
 
 
